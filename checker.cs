@@ -5,12 +5,6 @@ namespace BatteryManagement
 {
     public class BatteryCheckerFactors
     {
-        public static float minTemperatureLimit = 0;
-        public static float maxTemperatureLimit = 45;
-        public static float minStateOfCharge = 20;
-        public static float maxStateOfCharge = 80;
-        public static float minChargeRate = 0.5f;
-        public static float maxChargeRate = 0.8f;
         public static string Language;
         public static bool batteryIsOk(float Temperature, float StateOfCharge, float ChargeRate, string Language)
         {
