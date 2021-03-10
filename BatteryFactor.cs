@@ -7,34 +7,38 @@ namespace BatteryManagement
     public class BatteryFactor
     {
         public static bool BatteryStatus = true;
-        public static bool CheckBatteryCondition(string BatteryState, float MinBatteryValue, float MinBatteryWarning, float MaxBatteryValue, float MaxBatteryWarning, float BatteryValue, string BatteryLanguage)
+
+        public static bool CheckMinimumWarningCondition(string BatteryState, float MinBatteryValue, float MinBatteryWarning, float BatteryValue, string BatteryLanguage)
         {
             if (BatteryValue < MinBatteryValue)
             {
                 BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MinBatteryValue, BatteryValue, BatteryLanguage);
-                BatteryStatus = false;
+                return false;
             }
             else if (BatteryValue >= MinBatteryValue && BatteryValue <= MinBatteryWarning)
             {
                 BatteryStatusDisplay.PrintMinimumWarning(BatteryState, MinBatteryWarning, BatteryValue, BatteryLanguage);
-                BatteryStatus = false;
+                return false;
             }
-            else if (BatteryValue >= MaxBatteryWarning && BatteryValue <= MaxBatteryValue)
+            return true;
+        }
+        public static bool CheckMaximumWarningCondition(string BatteryState, float MaxBatteryValue, float MaxBatteryWarning, float BatteryValue, string BatteryLanguage)
+        {
+            if (BatteryValue >= MaxBatteryWarning && BatteryValue <= MaxBatteryValue)
             {
                 BatteryStatusDisplay.PrintMaximumWarning(BatteryState, MaxBatteryWarning, BatteryValue, BatteryLanguage);
-                BatteryStatus = false;
+                return false;
             }
             else if (BatteryValue > MaxBatteryValue)
             {
-                BatteryStatusDisplay.PrintMaximumLimit(BatteryState, MaxBatteryValue, BatteryValue, BatteryLanguage);
-                BatteryStatus = false;
+                BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MaxBatteryValue, BatteryValue, BatteryLanguage);
+                return false;
             }
-            else
-            {
-                BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue, BatteryLanguage);
-                BatteryStatus = true;
-            }
-            return BatteryStatus;
+            return true;
+        }
+        public static void NormalCondition(string BatteryState, float BatteryValue, string BatteryLanguage)
+        {
+            BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue, BatteryLanguage);
         }
     }
 }

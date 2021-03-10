@@ -14,9 +14,19 @@ namespace BatteryManagement
         public static bool CheckTemperature(float TemperatureValue, string BatteryLanguage)
         {
             if (BatteryLanguage == "English")
-                BatteryOk = BatteryFactor.CheckBatteryCondition("Temperature", MinTemperatureLimit, MinTemperatureWarning, MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
+            {
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperature", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperature", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
+                if (BatteryOk)
+                    BatteryFactor.NormalCondition("Temperature", TemperatureValue, BatteryLanguage);
+            }
             else
-                BatteryOk = BatteryFactor.CheckBatteryCondition("Temperatur", MinTemperatureLimit, MinTemperatureWarning, MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
+            {
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperatur", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperatur", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
+                if(BatteryOk)
+                    BatteryFactor.NormalCondition("Temperatur", TemperatureValue, BatteryLanguage);
+            }
             return BatteryOk;
         }
     }

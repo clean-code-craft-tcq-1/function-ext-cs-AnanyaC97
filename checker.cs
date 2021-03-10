@@ -11,9 +11,19 @@ namespace BatteryManagement
             bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge, Language);
             bool optimumChargeRate = BatteryChargeRate.CheckChargeRate(ChargeRate, Language);
             if (optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate)
-                Console.WriteLine("Battery is ok!\nDie Batterie ist ok!\n");
+            {
+                if (Language == "English")
+                    Console.WriteLine("Battery is ok!\n");
+                else
+                    Console.WriteLine("Die Batterie ist ok!\n");
+            }
             else
-                Console.WriteLine("Battery is faulty!\nBatterie ist fehlerhaft!\n");
+            {
+                if(Language == "English")
+                    Console.WriteLine("Battery is faulty!\n");
+                else
+                    Console.WriteLine("Batterie ist fehlerhaft!\n");
+            }
         }
         public static int Main()
         {
