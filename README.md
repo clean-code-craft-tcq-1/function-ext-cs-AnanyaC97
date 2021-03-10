@@ -58,19 +58,28 @@ Shorten the Semantic distance
 - Object oriented to encapsulate state with actions
 - Apect oriented to capture repeating aspects
 
-Extensions
-Try at least two of these extensions on your code. Mention the extensions you select in your README.md file.
+## Extensions
 
-Extension 1: Early Warning
-Customers need early warnings to take action, in addition to the alarm that you print after the limit is breached. Introduce a 'warning' level with a tolerance of 5% of the upper-limit.
+Try at least **two** of these extensions on your code.
+Mention the extensions you select in your `README.md` file.
 
-Example: If the SoC needs to be between 20 and 80, the warning-tolerance is 5% of 80 = 4. Warnings need to be displayed in these ranges:
+### Extension 1: Early Warning
+Customers need _early warnings_ to take action,
+in addition to the alarm that you print after the limit is breached.
+Introduce a 'warning' level with a tolerance of 5% of the upper-limit.
 
-20 to 20+4 Warning: Approaching discharge
-80-4 to 80 Warning: Approaching charge-peak
+Example: If the SoC needs to be between 20 and 80, the warning-tolerance is `5% of 80` = `4`.
+Warnings need to be displayed in these ranges:
+- `20` to `20+4` Warning: Approaching discharge
+- `80-4` to `80` Warning: Approaching charge-peak
+
 Same for Temperature and Charge-rate.
 
-Extension 2: Support a language in addition to English
-Our market has expanded to German-speaking countries! Switch the language of the printed messages based on a global variable.
+### Extension 2: Support a language in addition to English
 
-Use Google translate if you aren't familiar with German.
+Our market has expanded to German-speaking countries!
+Switch the language of the printed messages based on a global variable.
+
+Use [Google translate](https://translate.google.com/?sl=en&tl=de&op=translate)
+if you aren't familiar with German.
+
