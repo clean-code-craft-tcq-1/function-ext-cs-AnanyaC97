@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 
 namespace BatteryManagement
@@ -19,13 +19,31 @@ namespace BatteryManagement
                 Console.WriteLine("Battery is faulty!\nBatterie ist fehlerhaft!\n"); return false;
             }
         }
+        public static void ExpectTrue(bool expression)
+        {
+            if (!expression)
+            {
+                Console.WriteLine("Expected true, but got false");
+                Environment.Exit(1);
+            }
+            Console.WriteLine();
+        }
+        public static void ExpectFalse(bool expression)
+        {
+            if (expression)
+            {
+                Console.WriteLine("Expected false, but got true");
+                Environment.Exit(1);
+            }
+            Console.WriteLine();
+        }
         public static int Main()
         {
-            BatteryStatusDisplay.ExpectTrue(batteryIsOk(25, 70, 0.7f, "English"));
-            BatteryStatusDisplay.ExpectTrue(batteryIsOk(25, 70, 0.7f, "German"));
-            BatteryStatusDisplay.ExpectFalse(batteryIsOk(50, 85, 0.0f, "English"));
-            BatteryStatusDisplay.ExpectFalse(batteryIsOk(-50, 10, 0.9f, "German"));
-            BatteryStatusDisplay.ExpectFalse(batteryIsOk(30, 100, 0.0f, "English"));
+            ExpectTrue(batteryIsOk(25, 70, 0.7f, "English"));
+            ExpectTrue(batteryIsOk(25, 70, 0.7f, "German"));
+            ExpectFalse(batteryIsOk(50, 85, 0.0f, "English"));
+            ExpectFalse(batteryIsOk(-50, 10, 0.9f, "German"));
+            ExpectFalse(batteryIsOk(30, 100, 0.0f, "English"));
             return 0;
         }
     }
