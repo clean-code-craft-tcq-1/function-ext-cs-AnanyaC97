@@ -3,7 +3,7 @@
     <Compile Include="checker.cs"/>
     <Compile Include="BatteryTemperature.cs"/>
     <Compile Include="BatteryStateOfCharge.cs"/>
-    <Compile Inlcude="BatteryChargeRate.cs"/>
+    <Compile Include="BatteryChargeRate.cs"/>
     <Compile Include="BatteryFactor.cs"/>
     <Compile Include="BatteryStatusDisplay.cs"/>
   </ItemGroup>
