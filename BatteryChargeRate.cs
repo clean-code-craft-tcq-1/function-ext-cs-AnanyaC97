@@ -15,11 +15,9 @@ namespace BatteryManagement
         public static bool CheckChargeRate(float ChargeRateValue, string BatteryLanguage)
         {
             if (BatteryLanguage == "English")
-                BatteryOk = BatteryFactor.CheckBatteryCondition("Charge Rate", MinChargeRate, MinChargeRateWarning,
-                MaxChargeRate, MaxChargeRateWarning, ChargeRateValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckBatteryCondition("Charge Rate", MinChargeRate, MinChargeRateWarning, MaxChargeRate, MaxChargeRateWarning, ChargeRateValue, BatteryLanguage);
             else
-                BatteryOk = BatteryFactor.CheckBatteryCondition("Ladestrom", MinChargeRate, MinChargeRateWarning,
-                MaxChargeRate, MaxChargeRateWarning, ChargeRateValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckBatteryCondition("Ladestrom", MinChargeRate, MinChargeRateWarning, MaxChargeRate, MaxChargeRateWarning, ChargeRateValue, BatteryLanguage);
             return BatteryOk;
         }
     }

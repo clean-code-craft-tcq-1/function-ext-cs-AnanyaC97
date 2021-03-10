@@ -14,11 +14,9 @@ namespace BatteryManagement
         public static bool CheckStateOfCharge(float StateOfCharge, string BatteryLanguage)
         {
             if (BatteryLanguage == "English")
-                BatteryOk = BatteryFactor.CheckBatteryCondition("State Of Charge", MinStateOfCharge, MinStateOfChargeWarning,
-                MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckBatteryCondition("State Of Charge", MinStateOfCharge, MinStateOfChargeWarning, MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
             else
-                BatteryOk = BatteryFactor.CheckBatteryCondition("Ladezustand", MinStateOfCharge, MinStateOfChargeWarning,
-                MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckBatteryCondition("Ladezustand", MinStateOfCharge, MinStateOfChargeWarning, MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
             return BatteryOk;
         }
     }

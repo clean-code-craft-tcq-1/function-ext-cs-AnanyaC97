@@ -7,8 +7,7 @@ namespace BatteryManagement
     public class BatteryFactor
     {
         public static bool BatteryStatus = true;
-        public static bool CheckBatteryCondition(string BatteryState, float MinBatteryValue, float MinBatteryWarning, float MaxBatteryValue, 
-            float MaxBatteryWarning, float BatteryValue, string BatteryLanguage)
+        public static bool CheckBatteryCondition(string BatteryState, float MinBatteryValue, float MinBatteryWarning, float MaxBatteryValue, float MaxBatteryWarning, float BatteryValue, string BatteryLanguage)
         {
             if (BatteryValue < MinBatteryValue)
             {
