@@ -20,10 +20,8 @@ namespace BatteryManagement
         public static int Main()
         {
             batteryIsOk(25, 70, 0.7f);
-            batteryIsOk(50, 85, 0.0f);
             GermanLanguage = true;
             batteryIsOk(30, 100, 0.0f);
-            batteryIsOk(-50, 10, 0.9f);
             return 0;
         }
     }
