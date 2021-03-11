@@ -7,38 +7,33 @@ namespace BatteryManagement
     public class BatteryFactor
     {
         public static bool BatteryStatus = true;
-
-        public static bool CheckMinimumWarningCondition(string BatteryState, float MinBatteryValue, float MinBatteryWarning, float BatteryValue)
+        public static bool CheckMaxCondition(float MaxBatteryValue, float BatteryValue)
         {
-            if (BatteryValue < MinBatteryValue)
+            return BatteryValue > MaxBatteryValue ? true : false;
+        }
+        public static bool CheckMinContion(float MinBatteryValue, float BatteryValue)
+        {
+            return BatteryValue < MinBatteryValue ? true : false;
+        }
+        public static bool CheckBatteryStatus(string BatteryState, float MinBatteryValue, float MaxBatteryValue, float BatteryValue)
+        {
+            BatteryWarningStatus.CheckMinWarningBatteryCondition(BatteryState, MinBatteryValue, BatteryValue);
+            BatteryWarningStatus.CheckMaxWarningBatteryCondition(BatteryState, MaxBatteryValue, BatteryValue);
+            if (CheckMinContion(MinBatteryValue, BatteryValue))
             {
                 BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MinBatteryValue, BatteryValue);
                 return false;
             }
-            else if (BatteryValue >= MinBatteryValue && BatteryValue <= MinBatteryWarning)
+            else if (CheckMaxCondition(MaxBatteryValue, BatteryValue))
             {
-                BatteryStatusDisplay.PrintMinimumWarning(BatteryState, MinBatteryWarning, BatteryValue);
+                BatteryStatusDisplay.PrintMaximumLimit(BatteryState, MaxBatteryValue, BatteryValue);
                 return false;
             }
-            return true;
-        }
-        public static bool CheckMaximumWarningCondition(string BatteryState, float MaxBatteryValue, float MaxBatteryWarning, float BatteryValue)
-        {
-            if (BatteryValue >= MaxBatteryWarning && BatteryValue <= MaxBatteryValue)
+            else
             {
-                BatteryStatusDisplay.PrintMaximumWarning(BatteryState, MaxBatteryWarning, BatteryValue);
-                return false;
+                BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue);
+                return true;
             }
-            else if (BatteryValue > MaxBatteryValue)
-            {
-                BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MaxBatteryValue, BatteryValue);
-                return false;
-            }
-            return true;
-        }
-        public static void NormalCondition(string BatteryState, float BatteryValue)
-        {
-            BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue);
         }
     }
 }

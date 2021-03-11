@@ -8,24 +8,16 @@ namespace BatteryManagement
     {
         public static float MinStateOfCharge = 20;
         public static float MaxStateOfCharge = 80;
-        public static float MinStateOfChargeWarning = (float)(MinStateOfCharge + (0.05 * MaxStateOfCharge));
-        public static float MaxStateOfChargeWarning = (float)(MaxStateOfCharge - (0.05 * MaxStateOfCharge));
         public static bool BatteryOk;
         public static bool CheckStateOfCharge(float StateOfCharge)
         {
             if (BatteryCheckerFactors.GermanLanguage)
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Ladezustand", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Ladezustand", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge);
-                if (BatteryOk)
-                    BatteryFactor.NormalCondition("Ladezustand", StateOfCharge);
+                BatteryOk = BatteryFactor.CheckBatteryStatus("Ladezustand", MinStateOfCharge, MaxStateOfCharge, StateOfCharge);
             }
             else
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("State Of Charge", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("State Of Charge", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge);
-                if (BatteryOk)
-                    BatteryFactor.NormalCondition("State Of Charge", StateOfCharge);
+                BatteryOk = BatteryFactor.CheckBatteryStatus("State Of Charge", MinStateOfCharge, MaxStateOfCharge, StateOfCharge);
             }
             return BatteryOk;
         }        
