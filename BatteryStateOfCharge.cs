@@ -11,21 +11,21 @@ namespace BatteryManagement
         public static float MinStateOfChargeWarning = (float)(MinStateOfCharge + (0.05 * MaxStateOfCharge));
         public static float MaxStateOfChargeWarning = (float)(MaxStateOfCharge - (0.05 * MaxStateOfCharge));
         public static bool BatteryOk;
-        public static bool CheckStateOfCharge(float StateOfCharge, string BatteryLanguage)
+        public static bool CheckStateOfCharge(float StateOfCharge)
         {
-            if (BatteryLanguage == "English")
+            if (BatteryCheckerFactors.GermanLanguage)
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("State Of Charge", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge, BatteryLanguage);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("State Of Charge", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Ladezustand", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Ladezustand", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge);
                 if (BatteryOk)
-                    BatteryFactor.NormalCondition("State Of Charge", StateOfCharge, BatteryLanguage);
+                    BatteryFactor.NormalCondition("Ladezustand", StateOfCharge);
             }
             else
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Ladezustand", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge, BatteryLanguage);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Ladezustand", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("State Of Charge", MinStateOfCharge, MinStateOfChargeWarning, StateOfCharge);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("State Of Charge", MaxStateOfCharge, MaxStateOfChargeWarning, StateOfCharge);
                 if (BatteryOk)
-                    BatteryFactor.NormalCondition("Ladezustand", StateOfCharge, BatteryLanguage);
+                    BatteryFactor.NormalCondition("State Of Charge", StateOfCharge);
             }
             return BatteryOk;
         }        

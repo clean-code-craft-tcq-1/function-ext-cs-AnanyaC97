@@ -11,21 +11,21 @@ namespace BatteryManagement
         public static float MinTemperatureWarning = (float)(MinTemperatureLimit + (0.05 * MaxTemperatureLimit));
         public static float MaxTemperatureWarning = (float)(MaxTemperatureLimit - (0.05 * MaxTemperatureLimit));
         public static bool BatteryOk;
-        public static bool CheckTemperature(float TemperatureValue, string BatteryLanguage)
+        public static bool CheckTemperature(float TemperatureValue)
         {
-            if (BatteryLanguage == "English")
+            if (BatteryCheckerFactors.GermanLanguage)
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperature", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue, BatteryLanguage);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperature", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperatur", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperatur", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue);
                 if (BatteryOk)
-                    BatteryFactor.NormalCondition("Temperature", TemperatureValue, BatteryLanguage);
+                    BatteryFactor.NormalCondition("Temperatur", TemperatureValue);
             }
             else
             {
-                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperatur", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue, BatteryLanguage);
-                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperatur", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue, BatteryLanguage);
-                if(BatteryOk)
-                    BatteryFactor.NormalCondition("Temperatur", TemperatureValue, BatteryLanguage);
+                BatteryOk = BatteryFactor.CheckMinimumWarningCondition("Temperature", MinTemperatureLimit, MinTemperatureWarning, TemperatureValue);
+                BatteryOk = BatteryFactor.CheckMaximumWarningCondition("Temperature", MaxTemperatureLimit, MaxTemperatureWarning, TemperatureValue);
+                if (BatteryOk)
+                    BatteryFactor.NormalCondition("Temperature", TemperatureValue);
             }
             return BatteryOk;
         }

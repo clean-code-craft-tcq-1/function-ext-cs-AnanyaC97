@@ -5,21 +5,23 @@ namespace BatteryManagement
 {
     public class BatteryCheckerFactors
     {
-        public static void batteryIsOk(float Temperature, float StateOfCharge, float ChargeRate, string Language)
+        public static bool GermanLanguage = false;
+
+        public static void batteryIsOk(float Temperature, float StateOfCharge, float ChargeRate)
         {
-            bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature, Language);
-            bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge, Language);
-            bool optimumChargeRate = BatteryChargeRate.CheckChargeRate(ChargeRate, Language);
+            bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature);
+            bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge);
+            bool optimumChargeRate = BatteryChargeRate.CheckChargeRate(ChargeRate);
             if (optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate)
             {
-                if (Language == "English")
+                if (GermanLanguage)
                     Console.WriteLine("Battery is ok!\n");
                 else
                     Console.WriteLine("Die Batterie ist ok!\n");
             }
             else
             {
-                if(Language == "English")
+                if(GermanLanguage)
                     Console.WriteLine("Battery is faulty!\n");
                 else
                     Console.WriteLine("Batterie ist fehlerhaft!\n");
@@ -27,11 +29,12 @@ namespace BatteryManagement
         }
         public static int Main()
         {
-            batteryIsOk(25, 70, 0.7f, "English");
-            batteryIsOk(25, 70, 0.7f, "German");
-            batteryIsOk(50, 85, 0.0f, "English");
-            batteryIsOk(-50, 10, 0.9f, "German");
-            batteryIsOk(30, 100, 0.0f, "English");
+            batteryIsOk(25, 70, 0.7f);
+            batteryIsOk(25, 70, 0.7f);
+            batteryIsOk(50, 85, 0.0f);
+            GermanLanguage = true;
+            batteryIsOk(30, 100, 0.0f);
+            batteryIsOk(-50, 10, 0.9f);
             return 0;
         }
     }
