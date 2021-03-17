@@ -17,23 +17,24 @@ namespace BatteryManagement
         }
         public static bool CheckBatteryStatus(string BatteryState, float MinBatteryValue, float MaxBatteryValue, float BatteryValue)
         {
-            BatteryWarningStatus.CheckMinWarningBatteryCondition(BatteryState, MinBatteryValue, BatteryValue);
-            BatteryWarningStatus.CheckMaxWarningBatteryCondition(BatteryState, MaxBatteryValue, BatteryValue);
+            BatteryWarningStatus.CheckMinWarningBatteryCondition(BatteryState, BatteryValue, MinBatteryValue, MaxBatteryValue);
+            BatteryWarningStatus.CheckMaxWarningBatteryCondition(BatteryState, BatteryValue, MaxBatteryValue);
             if (CheckMinContion(MinBatteryValue, BatteryValue))
             {
-                BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MinBatteryValue, BatteryValue);
-                return false;
+                BatteryConsolidate.MinimumLimit.Add(BatteryState);
+                BatteryStatus = false;
             }
             else if (CheckMaxCondition(MaxBatteryValue, BatteryValue))
             {
-                BatteryStatusDisplay.PrintMaximumLimit(BatteryState, MaxBatteryValue, BatteryValue);
-                return false;
+                BatteryConsolidate.MaximumLimit.Add(BatteryState);
+                BatteryStatus =  false;
             }
             else
             {
-                BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue);
-                return true;
+                BatteryConsolidate.NormalLimit.Add(BatteryState);
+                BatteryStatus = true;
             }
+            return BatteryStatus;
         }
     }
 }

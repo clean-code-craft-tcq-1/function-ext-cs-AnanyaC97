@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 
 namespace BatteryManagement
@@ -12,15 +12,15 @@ namespace BatteryManagement
             bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature);
             bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge);
             bool optimumChargeRate = BatteryChargeRate.CheckChargeRate(ChargeRate);
-
+            BatteryConsolidate.DisplayBatteryStatus();
             return optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate;
         }
         public static void DisplayMessage(bool BatteryOK)
         {
             if(BatteryOK)
-                Console.WriteLine("Battery is ok!\nDie Batterie ist ok!\n");
+                Console.WriteLine("Battery is ok! Die Batterie ist ok!\n");
             else
-                Console.WriteLine("Battery is faulty!\nBatterie ist fehlerhaft!\n");
+                Console.WriteLine("Battery is faulty! Batterie ist fehlerhaft!\n");
         }
         public static int Main()
         {

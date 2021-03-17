@@ -10,17 +10,23 @@ namespace BatteryManagement
         {
             return (float)(0.05 * BatteryValue);
         }
-        public static void CheckMinWarningBatteryCondition(string BatteryState, float BatteryValue, float MinBatteryValue)
+        public static void CheckMinWarningBatteryCondition(string BatteryState, float BatteryValue, float MinBatteryValue, float MaxBatteryValue)
         {
-            float MinBatteryWarning = MinBatteryValue + CheckwarningLimit(BatteryValue);
+            float MinBatteryWarning = MinBatteryValue + CheckwarningLimit(MaxBatteryValue);
             if (BatteryValue >= MinBatteryValue && BatteryValue <= MinBatteryWarning)
-                BatteryStatusDisplay.PrintMinimumWarning(BatteryState, MinBatteryWarning, BatteryValue);
+            {
+                BatteryConsolidate.MinWarning.Add(BatteryState);
+                //BatteryStatusDisplay.PrintMinimumWarning(BatteryState, MinBatteryWarning, BatteryValue);
+            }
         }
         public static void CheckMaxWarningBatteryCondition(string BatteryState, float BatteryValue, float MaxBatteryValue)
         {
-            float MaxBatteryWarning = MaxBatteryValue - CheckwarningLimit(BatteryValue);
+            float MaxBatteryWarning = MaxBatteryValue - CheckwarningLimit(MaxBatteryValue);
             if (BatteryValue >= MaxBatteryValue && BatteryValue <= MaxBatteryWarning)
-                BatteryStatusDisplay.PrintMaximumWarning(BatteryState, MaxBatteryWarning, BatteryValue);
+            {
+                BatteryConsolidate.MaxWarning.Add(BatteryState);
+                //BatteryStatusDisplay.PrintMaximumWarning(BatteryState, MaxBatteryWarning, BatteryValue);
+            }
         }
     }
 }
