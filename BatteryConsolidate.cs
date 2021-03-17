@@ -16,6 +16,8 @@ namespace BatteryManagement
         {
             DisplayBatteryBreachStatus();
             DisplayWarningStatus();
+            if (NormalLimit.Count != 0)
+                BatteryStatusDisplay.PrintValid();
             ClearList();
         }
         public static void DisplayBatteryBreachStatus()
@@ -24,8 +26,6 @@ namespace BatteryManagement
                 BatteryStatusDisplay.PrintMinimumLimit();
             if (MaximumLimit.Count != 0)
                 BatteryStatusDisplay.PrintMaximumLimit();
-            if (NormalLimit.Count != 0)
-                BatteryStatusDisplay.PrintValid();
         }
         public static void DisplayWarningStatus()
         {
