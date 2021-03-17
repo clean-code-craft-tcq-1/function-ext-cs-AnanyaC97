@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 
 namespace BatteryManagement
@@ -7,7 +7,7 @@ namespace BatteryManagement
     {
         public static bool GermanLanguage = false;
 
-        public static bool batteryIsOk(float Temperature, float StateOfCharge, float ChargeRate)
+        public static bool BatteryChecker(float Temperature, float StateOfCharge, float ChargeRate)
         {
             bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature);
             bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge);
@@ -15,20 +15,34 @@ namespace BatteryManagement
             BatteryConsolidate.DisplayBatteryStatus();
             return optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate;
         }
-        public static void DisplayMessage(bool BatteryOK)
+        public static void BatteryFaulty()
         {
-            if(BatteryOK)
-                Console.WriteLine("Battery is ok! Die Batterie ist ok!\n");
+            if (GermanLanguage)
+                Console.WriteLine("Batterie ist fehlerhaft!\n");
             else
-                Console.WriteLine("Battery is faulty! Batterie ist fehlerhaft!\n");
+                Console.WriteLine("Battery is faulty!\n");
+        }
+        public static void BatteryOk()
+        {
+            if(GermanLanguage)
+                Console.WriteLine("Die Batterie ist ok!\n");
+            else
+                Console.WriteLine("Battery is ok!\n");
+        }
+        public static void DisplayMessage(bool BatteryChecker)
+        {
+            if (BatteryChecker)
+                BatteryOk();
+            else
+                BatteryFaulty();
         }
         public static int Main()
         {
-            DisplayMessage(batteryIsOk(25, 70, 0.7f));
-            DisplayMessage(batteryIsOk(1, 19, 0.0f));
+            DisplayMessage(BatteryChecker(25, 70, 0.7f));
+            DisplayMessage(BatteryChecker(1, 19, 0.0f));
             GermanLanguage = true;
-            DisplayMessage(batteryIsOk(30, 100, 0.0f));
-            DisplayMessage(batteryIsOk(-50, 10, 0.9f));
+            DisplayMessage(BatteryChecker(30, 100, 0.0f));
+            DisplayMessage(BatteryChecker(-50, 10, 0.9f));
             return 0;
         }
     }
