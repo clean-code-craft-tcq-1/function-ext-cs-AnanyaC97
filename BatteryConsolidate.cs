@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,31 +14,33 @@ namespace BatteryManagement
 
         public static void DisplayBatteryStatus()
         {
+            DisplayBatteryBreachStatus();
+            DisplayWarningStatus();
+            ClearList();
+        }
+        public static void DisplayBatteryBreachStatus()
+        {
             if (MinimumLimit.Count != 0)
-            {
                 BatteryStatusDisplay.PrintMinimumLimit();
-                MinimumLimit.Clear();
-            }
-            if (MinWarning.Count != 0)
-            {
-                BatteryStatusDisplay.PrintMinimumWarning();
-                MinWarning.Clear();
-            }
             if (MaximumLimit.Count != 0)
-            {
                 BatteryStatusDisplay.PrintMaximumLimit();
-                MaximumLimit.Clear();
-            }
-            if (MaxWarning.Count != 0)
-            {
-                BatteryStatusDisplay.PrintMaximumWarning();
-                MaxWarning.Clear();
-            }
             if (NormalLimit.Count != 0)
-            {
                 BatteryStatusDisplay.PrintValid();
-                NormalLimit.Clear();
-            }
+        }
+        public static void DisplayWarningStatus()
+        {
+            if (MinWarning.Count != 0)
+                BatteryStatusDisplay.PrintMinimumWarning();
+            if (MaxWarning.Count != 0)
+                BatteryStatusDisplay.PrintMaximumWarning();
+        }
+        public static void ClearList()
+        {
+            MinimumLimit.Clear();
+            MinWarning.Clear();
+            MaximumLimit.Clear();
+            MaxWarning.Clear();
+            NormalLimit.Clear();
         }
     }
 }
