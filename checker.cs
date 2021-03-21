@@ -1,38 +1,39 @@
 using System;
 using System.Diagnostics;
 
-class Checker
+namespace BatteryManagement
 {
-    static bool batteryIsOk(float temperature, float soc, float chargeRate) {
-        if(temperature < 0 || temperature > 45) {
-            Console.WriteLine("Temperature is out of range!");
-            return false;
-        } else if(soc < 20 || soc > 80) {
-            Console.WriteLine("State of Charge is out of range!");
-            return false;
-        } else if(chargeRate > 0.8) {
-            Console.WriteLine("Charge Rate is out of range!");
-            return false;
+    public class BatteryCheckerFactors
+    {
+        public static bool BatteryChecker(float Temperature, float StateOfCharge, float ChargeRate, string language)
+        {
+            bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature, language);
+            bool optimumStateOfCharge = BatteryStateOfCharge.CheckStateOfCharge(StateOfCharge, language);
+            bool optimumChargeRate = BatteryChargeRate.CheckChargeRate(ChargeRate, language);
+            BatteryConsolidate.DisplayBatteryStatus(language);
+            return optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate;
         }
-        return true;
-    }
-
-    static void ExpectTrue(bool expression) {
-        if(!expression) {
-            Console.WriteLine("Expected true, but got false");
-            Environment.Exit(1);
+        public static void DisplayBatteryStatusGerman(bool BatteryStatus)
+        {
+            if (BatteryStatus)
+                Console.WriteLine(BatteryStatusDisplay.German.BatteryOK + "\n");
+            else
+                Console.WriteLine(BatteryStatusDisplay.German.BatteryFaulty + "\n");
         }
-    }
-    static void ExpectFalse(bool expression) {
-        if(expression) {
-            Console.WriteLine("Expected false, but got true");
-            Environment.Exit(1);
+        public static void DisplayBatteryStatusEnglish(bool BatteryStatus)
+        {
+            if (BatteryStatus)
+                Console.WriteLine(BatteryStatusDisplay.English.BatteryOK + "\n");
+            else
+                Console.WriteLine(BatteryStatusDisplay.English.BatteryFaulty + "\n");
         }
-    }
-    static int Main() {
-        ExpectTrue(batteryIsOk(25, 70, 0.7f));
-        ExpectFalse(batteryIsOk(50, 85, 0.0f));
-        Console.WriteLine("All ok");
-        return 0;
+        public static int Main()
+        {
+            DisplayBatteryStatusEnglish(BatteryChecker(25, 70, 0.7f, "English"));
+            DisplayBatteryStatusEnglish(BatteryChecker(1, 19, 0.0f, "English"));
+            DisplayBatteryStatusGerman(BatteryChecker(30, 100, 0.0f, "German"));
+            DisplayBatteryStatusGerman(BatteryChecker(-50, 10, 0.9f, "German"));
+            return 0;
+        }
     }
 }
