@@ -9,13 +9,13 @@ namespace BatteryManagement
         public static float MinChargeRate = 0.5f;
         public static float MaxChargeRate = 0.8f;
         public static bool BatteryOk;
-        public static bool CheckChargeRate(float ChargeRateValue)
+        public static bool CheckChargeRate(float ChargeRateValue, string Language)
         {
-            if (BatteryCheckerFactors.GermanLanguage)
+            if (Language == "German")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("Ladestrom", MinChargeRate, MaxChargeRate, ChargeRateValue);
             }
-            else
+            if (Language == "English")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("Charge Rate", MinChargeRate, MaxChargeRate, ChargeRateValue);
             }

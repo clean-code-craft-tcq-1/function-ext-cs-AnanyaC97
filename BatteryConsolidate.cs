@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,28 +12,27 @@ namespace BatteryManagement
         public static List<string> MinWarning = new List<string>();
         public static List<string> NormalLimit = new List<string>();
 
-        public static void DisplayBatteryStatus()
+        public static void DisplayBatteryStatus(string language)
         {
-            DisplayBatteryBreachStatus();
-            DisplayWarningStatus();
-            if (NormalLimit.Count != 0)
-                BatteryStatusDisplay.PrintValid();
+            if (language == "German")
+            {
+                BatteryStatusDisplay.PrintMessageGerman(MinimumLimit, BatteryStatusDisplay.German.MinimumLimit);
+                BatteryStatusDisplay.PrintMessageGerman(MaximumLimit, BatteryStatusDisplay.German.MaximumLimit);
+                BatteryStatusDisplay.PrintMessageGerman(MinWarning, BatteryStatusDisplay.German.MinWarningLimit);
+                BatteryStatusDisplay.PrintMessageGerman(MaxWarning, BatteryStatusDisplay.German.MaxWarningLimit);
+                BatteryStatusDisplay.PrintMessageGerman(NormalLimit, BatteryStatusDisplay.German.NormalLimit);
+            }
+            if (language == "English")
+            {
+                BatteryStatusDisplay.PrintMessageEnglish(MinimumLimit, BatteryStatusDisplay.English.MinimumLimit);
+                BatteryStatusDisplay.PrintMessageEnglish(MaximumLimit, BatteryStatusDisplay.English.MaximumLimit);
+                BatteryStatusDisplay.PrintMessageEnglish(MinWarning, BatteryStatusDisplay.English.MinWarningLimit);
+                BatteryStatusDisplay.PrintMessageEnglish(MaxWarning, BatteryStatusDisplay.English.MaxWarningLimit);
+                BatteryStatusDisplay.PrintMessageEnglish(NormalLimit, BatteryStatusDisplay.English.NormalLimit);
+            }
             ClearList();
         }
-        public static void DisplayBatteryBreachStatus()
-        {
-            if (MinimumLimit.Count != 0)
-                BatteryStatusDisplay.PrintMinimumLimit();
-            if (MaximumLimit.Count != 0)
-                BatteryStatusDisplay.PrintMaximumLimit();
-        }
-        public static void DisplayWarningStatus()
-        {
-            if (MinWarning.Count != 0)
-                BatteryStatusDisplay.PrintMinimumWarning();
-            if (MaxWarning.Count != 0)
-                BatteryStatusDisplay.PrintMaximumWarning();
-        }
+
         public static void ClearList()
         {
             MinimumLimit.Clear();

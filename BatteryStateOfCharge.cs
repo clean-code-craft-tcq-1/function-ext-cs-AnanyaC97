@@ -9,13 +9,13 @@ namespace BatteryManagement
         public static float MinStateOfCharge = 20;
         public static float MaxStateOfCharge = 80;
         public static bool BatteryOk;
-        public static bool CheckStateOfCharge(float StateOfCharge)
+        public static bool CheckStateOfCharge(float StateOfCharge, string language)
         {
-            if (BatteryCheckerFactors.GermanLanguage)
+            if (language == "German")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("Ladezustand", MinStateOfCharge, MaxStateOfCharge, StateOfCharge);
             }
-            else
+            if (language == "English")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("State Of Charge", MinStateOfCharge, MaxStateOfCharge, StateOfCharge);
             }

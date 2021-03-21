@@ -14,19 +14,13 @@ namespace BatteryManagement
         {
             float MinBatteryWarning = MinBatteryValue + CheckwarningLimit(MaxBatteryValue);
             if (BatteryValue >= MinBatteryValue && BatteryValue <= MinBatteryWarning)
-            {
                 BatteryConsolidate.MinWarning.Add(BatteryState);
-                //BatteryStatusDisplay.PrintMinimumWarning(BatteryState, MinBatteryWarning, BatteryValue);
-            }
         }
         public static void CheckMaxWarningBatteryCondition(string BatteryState, float BatteryValue, float MaxBatteryValue)
         {
             float MaxBatteryWarning = MaxBatteryValue - CheckwarningLimit(MaxBatteryValue);
             if (BatteryValue >= MaxBatteryValue && BatteryValue <= MaxBatteryWarning)
-            {
                 BatteryConsolidate.MaxWarning.Add(BatteryState);
-                //BatteryStatusDisplay.PrintMaximumWarning(BatteryState, MaxBatteryWarning, BatteryValue);
-            }
         }
     }
 }

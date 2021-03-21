@@ -6,41 +6,43 @@ namespace BatteryManagement
 {
     public class BatteryStatusDisplay
     {
-        public static void PrintMaximumLimit()
+        public class German
         {
-            if (BatteryCheckerFactors.GermanLanguage)
-                Console.WriteLine($"Batteriefaktoren: {string.Join(",", BatteryConsolidate.MaximumLimit)} ist außerhalb des Bereichs und hat seinen maximalen Schwellenwert überschritten!");
-            else
-                Console.WriteLine($"Battery Factors: {string.Join(",", BatteryConsolidate.MaximumLimit)} out of range and has exceeded its maximum threshold!");
+            public static string BatteryOK = "Die Batterie ist ok!";
+            public static string BatteryFaulty = "Batterie ist fehlerhaft!";
+            public static string BatteryFactors = "Batteriefaktoren";
+            public static string MaximumLimit = " ist außerhalb des Bereichs und hat seinen maximalen Schwellenwert überschritten!";
+            public static string MinimumLimit = " ist außerhalb des Bereichs und hat seinen Mindestschwellenwert fehlgeschlagen!";
+            public static string MaxWarningLimit = " nähert sich seiner maximalen Schwelle!";
+            public static string MinWarningLimit = " nähert sich der minimalen Schwelle!";
+            public static string NormalLimit = " ist in der angegebenen Grenze!";
         }
-        public static void PrintMinimumLimit()
-        {
-            if (BatteryCheckerFactors.GermanLanguage)
-                Console.WriteLine($"Batteriefaktoren: {string.Join(", ", BatteryConsolidate.MinimumLimit)} ist außerhalb des Bereichs und hat seinen Mindestschwellenwert fehlgeschlagen!");
-            else
-                Console.WriteLine($"Battery Factors: {string.Join(", ", BatteryConsolidate.MinimumLimit)} out of range and has failed its minimum threshold!");
-        }
-        public static void PrintMinimumWarning()
-        {
-            if (BatteryCheckerFactors.GermanLanguage)
-                Console.WriteLine($"Warnung! Batteriefaktoren: {string.Join(", ", BatteryConsolidate.MinWarning)} nähert sich der minimalen Schwelle!");
-            else
-                Console.WriteLine($"Warning! Battery Factors: {string.Join(", ", BatteryConsolidate.MinWarning)} approaching its minimum threshold!");
-        }
-        public static void PrintMaximumWarning()
-        {
-            if (BatteryCheckerFactors.GermanLanguage)
-                Console.WriteLine($"Warnung! Batteriefaktoren: {string.Join(", ", BatteryConsolidate.MinWarning)} nähert sich seiner maximalen Schwelle!");
-            else
-                Console.WriteLine($"Warning! Battery Factor: {string.Join(", ", BatteryConsolidate.MinWarning)} is approaching its maximum threshold!");
-        }
-        public static void PrintValid()
-        {
-            if (BatteryCheckerFactors.GermanLanguage)
-                Console.WriteLine($"Batteriefaktoren: {string.Join(", ", BatteryConsolidate.NormalLimit)} ist in der angegebenen Grenze!");
-            else
-                Console.WriteLine($"Battery Factor: {string.Join(", ", BatteryConsolidate.NormalLimit)} in the specified limit!");
 
+        public class English
+        {
+            public static string BatteryOK = "Battery is OK!";
+            public static string BatteryFaulty = "Battery is faulty!";
+            public static string BatteryFactors = "Battery Factors";
+            public static string MaximumLimit = " out of range and has exceeded its maximum threshold!";
+            public static string MinimumLimit = " out of range and has failed its minimum threshold!";
+            public static string MaxWarningLimit = " is approaching its maximum threshold!";
+            public static string MinWarningLimit = " approaching its minimum threshold!";
+            public static string NormalLimit = " in the specified limit!";
+        }
+
+        public static void PrintMessageGerman(List<string> BatteryLimit, string message)
+        {
+            if(BatteryLimit.Count != 0)
+            {
+                Console.WriteLine(German.BatteryFactors + ": " + $"{ string.Join(", ", BatteryLimit)}" + message);
+            }
+        }
+        public static void PrintMessageEnglish(List<string> BatteryLimit, string message)
+        {
+            if (BatteryLimit.Count != 0)
+            {
+                Console.WriteLine(English.BatteryFactors + ": " + $"{ string.Join(", ", BatteryLimit)}" + message);
+            }
         }
     }
 }

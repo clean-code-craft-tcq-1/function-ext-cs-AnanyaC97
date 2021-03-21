@@ -6,7 +6,6 @@ namespace BatteryManagement
 {
     public class BatteryFactor
     {
-        public static bool BatteryStatus = true;
         public static bool CheckMaxCondition(float MaxBatteryValue, float BatteryValue)
         {
             return BatteryValue > MaxBatteryValue ? true : false;
@@ -22,19 +21,18 @@ namespace BatteryManagement
             if (CheckMinContion(MinBatteryValue, BatteryValue))
             {
                 BatteryConsolidate.MinimumLimit.Add(BatteryState);
-                BatteryStatus = false;
+                return false;
             }
             else if (CheckMaxCondition(MaxBatteryValue, BatteryValue))
             {
                 BatteryConsolidate.MaximumLimit.Add(BatteryState);
-                BatteryStatus =  false;
+                return false;
             }
             else
             {
                 BatteryConsolidate.NormalLimit.Add(BatteryState);
-                BatteryStatus = true;
+                return true;
             }
-            return BatteryStatus;
         }
     }
 }

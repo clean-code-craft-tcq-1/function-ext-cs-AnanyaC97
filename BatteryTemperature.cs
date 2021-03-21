@@ -9,13 +9,13 @@ namespace BatteryManagement
         public static float MinTemperatureLimit = 0;
         public static float MaxTemperatureLimit = 45;
         public static bool BatteryOk;
-        public static bool CheckTemperature(float TemperatureValue)
+        public static bool CheckTemperature(float TemperatureValue, string Language)
         {
-            if (BatteryCheckerFactors.GermanLanguage)
+            if (Language == "German")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("Temperatur", MinTemperatureLimit, MaxTemperatureLimit, TemperatureValue);
             }
-            else
+            if (Language == "English")
             {
                 BatteryOk = BatteryFactor.CheckBatteryStatus("Temperature", MinTemperatureLimit, MaxTemperatureLimit, TemperatureValue);
             }
