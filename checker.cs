@@ -5,7 +5,6 @@ namespace BatteryManagement
 {
     public class BatteryCheckerFactors
     {
-        public static bool BatteryStatus;
         public static bool BatteryChecker(float Temperature, float StateOfCharge, float ChargeRate, string language)
         {
             bool optimumTemperatureLimit = BatteryTemperature.CheckTemperature(Temperature, language);
